@@ -1,0 +1,7 @@
+WITH A AS (
+    SELECT PART.P_NAME, SUPPLIER.S_NAME, PARTSUPP.PS_AVAILQTY
+    FROM {{ source('sample_data','PART') }}
+    JOIN {{ source('sample_data','PARTSUPP') }} ON PART.P_PARTKEY = PARTSUPP.PS_PARTKEY
+    JOIN {{ source('sample_data','SUPPLIER') }} ON PARTSUPP.PS_SUPPKEY = SUPPLIER.S_SUPPKEY
+)
+SELECT * FROM A
